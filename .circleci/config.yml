@@ -43,4 +43,4 @@ jobs:
       branch: master
       owner: circleci
       commands:
-        - run: yarn deploy
+        - yarn deploy
