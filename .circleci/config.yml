@@ -37,10 +37,3 @@ jobs:
 
       # run tests!
       - run: yarn test
-
-  deployment:
-    master:
-      branch: master
-      owner: circleci
-      commands:
-        - yarn deploy
