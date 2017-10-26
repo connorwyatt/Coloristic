@@ -1,18 +1,23 @@
-export function* RandomAccessIterator<Element>(elements: Array<Element>)
+export function* RandomAccessIterator<Element>(
+  elements: Array<Element>,
+  repeat: Boolean = false)
 {
-  let remainingElements = [...elements];
-
-  while (remainingElements.length > 0)
+  do
   {
-    const randomIndex = Math.floor(Math.random() * remainingElements.length);
+    let remainingElements = [...elements];
 
-    const randomElement = remainingElements[randomIndex];
+    while (remainingElements.length > 0)
+    {
+      const randomIndex = Math.floor(Math.random() * remainingElements.length);
 
-    remainingElements = [
-      ...remainingElements.slice(0, randomIndex),
-      ...remainingElements.slice(randomIndex + 1)
-    ];
+      const randomElement = remainingElements[randomIndex];
 
-    yield randomElement;
-  }
+      remainingElements = [
+        ...remainingElements.slice(0, randomIndex),
+        ...remainingElements.slice(randomIndex + 1)
+      ];
+
+      yield randomElement;
+    }
+  } while (repeat);
 }
