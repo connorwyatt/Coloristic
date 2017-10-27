@@ -6,8 +6,8 @@ import { NTC_TOKEN } from './color/ntc.token';
 
 @NgModule({
   declarations: [
-    AppComponent
-  ],
+    AppComponent],
+
   imports: [
     BrowserModule
   ],
