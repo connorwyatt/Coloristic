@@ -11,7 +11,8 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "predeploy": "yarn run build",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "private": true,
   "dependencies": {
