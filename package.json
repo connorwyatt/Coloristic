@@ -12,7 +12,8 @@
     "e2e": "ng e2e",
     "predeploy": "yarn run build",
     "deploy": "firebase deploy",
-    "format": "prettier --write \"{src,e2e}/**/*.ts\""
+    "format": "prettier --write \"{src,e2e}/**/*.ts\"",
+    "checkFormat": "prettier --list-different \"{src,e2e}/**/*.ts\""
   },
   "private": true,
   "dependencies": {

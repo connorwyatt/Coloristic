@@ -23,6 +23,8 @@ jobs:
 
       - run: xvfb-run -a yarn lint
 
+      - run: xvfb-run -a yarn checkFormat
+
       - run: xvfb-run -a yarn test:ci
 
       - deploy:
