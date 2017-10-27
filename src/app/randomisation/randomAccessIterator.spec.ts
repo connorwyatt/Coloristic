@@ -1,12 +1,10 @@
 import { RandomAccessIterator } from './randomAccessIterator';
 
-const arrayFromIterator = (iterator: Generator) =>
-{
+const arrayFromIterator = (iterator: Generator) => {
   let result = iterator.next();
   const array = [];
 
-  while (!result.done)
-  {
+  while (!result.done) {
     array.push(result.value);
 
     result = iterator.next();
@@ -15,8 +13,7 @@ const arrayFromIterator = (iterator: Generator) =>
   return array;
 };
 
-describe('RandomAccessIterator', () =>
-{
+describe('RandomAccessIterator', () => {
   let iterator: Generator;
   const names = [
     'Sheldon',
@@ -28,42 +25,34 @@ describe('RandomAccessIterator', () =>
     'Bernadette'
   ];
 
-  describe('when the iterator is not set to repeat', () =>
-  {
-    beforeEach(() =>
-    {
+  describe('when the iterator is not set to repeat', () => {
+    beforeEach(() => {
       iterator = RandomAccessIterator(names);
     });
 
-    it('returns the same number of elements that it was provided with', () =>
-    {
+    it('returns the same number of elements that it was provided with', () => {
       const elements = arrayFromIterator(iterator);
 
       expect(elements.length).toBe(names.length);
     });
 
-    it('returns all elements from the provided elements', () =>
-    {
+    it('returns all elements from the provided elements', () => {
       const elements = arrayFromIterator(iterator);
 
-      names.forEach(name =>
-      {
+      names.forEach(name => {
         expect(elements).toContain(name);
       });
     });
 
-    it('returns the elements in a different order each time', () =>
-    {
+    it('returns the elements in a different order each time', () => {
       const results = Array(10)
         .fill(null, 0, 10)
         .map(() => arrayFromIterator(RandomAccessIterator(names)))
-        .map(elements =>
-        {
+        .map(elements => {
           return elements.join(', ');
         });
 
-      const uniqueFirstValues = results.filter((value, index) =>
-      {
+      const uniqueFirstValues = results.filter((value, index) => {
         return index === results.indexOf(value);
       });
 
@@ -71,17 +60,13 @@ describe('RandomAccessIterator', () =>
     });
   });
 
-  describe('when the iterator is set to repeat', () =>
-  {
-    beforeEach(() =>
-    {
+  describe('when the iterator is set to repeat', () => {
+    beforeEach(() => {
       iterator = RandomAccessIterator(names, true);
     });
 
-    it('does not terminate once all values have been returned', () =>
-    {
-      for (let i = 0; i < names.length; i++)
-      {
+    it('does not terminate once all values have been returned', () => {
+      for (let i = 0; i < names.length; i++) {
         iterator.next();
       }
 
