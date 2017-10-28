@@ -1,0 +1,12 @@
+@import "../../../styles/theme";
+
+.container {
+  background: linear-gradient(170deg, #F76B1C, #FAD961);
+  border-bottom: 1px solid $Color-white;
+  color: $Color-textInverted;
+  padding: ($Spacing-default * 2) ($Spacing-default * 4);
+}
+
+.title {
+  @include Typography-heading4Style();
+}
