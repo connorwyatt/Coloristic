@@ -8,10 +8,7 @@ export class ColorService {
   private colors: Generator;
 
   public constructor(@Inject(NTC_TOKEN) nameThatColor: NameThatColor) {
-    const colors = nameThatColor.names.map(item => ({
-      name: item[1],
-      hex: item[0]
-    }));
+    const colors = nameThatColor.names.map(item => new Color(item[1], item[0]));
 
     this.colors = RandomAccessIterator(colors, true);
   }
