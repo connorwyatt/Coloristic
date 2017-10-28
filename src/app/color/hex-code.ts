@@ -49,4 +49,16 @@ export class HexCode {
   public toString() {
     return this.value;
   }
+
+  public isEqual(otherHexCode: HexCode): boolean {
+    if (this.isValid !== otherHexCode.isValid) {
+      return false;
+    }
+
+    if (this.isValid && otherHexCode.isValid) {
+      return this.value === otherHexCode.value;
+    }
+
+    return true;
+  }
 }
