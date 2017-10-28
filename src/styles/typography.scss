@@ -1,0 +1,21 @@
+@import "theme";
+
+%baseTypography {
+  font-size: $Typography-bodySize;
+  font-weight: $Typography-bodyWeight;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  @extend %baseTypography;
+  color: inherit;
+}
+
+body {
+  color: $Color-text;
+}

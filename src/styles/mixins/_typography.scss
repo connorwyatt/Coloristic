@@ -1,0 +1,21 @@
+@import "../variables/typography";
+
+@mixin Typography-heading1Style {
+  font-size: $Typography-heading1Size;
+  font-weight: $Typography-heading1Weight;
+}
+
+@mixin Typography-heading2Style {
+  font-size: $Typography-heading2Size;
+  font-weight: $Typography-heading2Weight;
+}
+
+@mixin Typography-heading3Style {
+  font-size: $Typography-heading3Size;
+  font-weight: $Typography-heading3Weight;
+}
+
+@mixin Typography-heading4Style {
+  font-size: $Typography-heading4Size;
+  font-weight: $Typography-heading4Weight;
+}
