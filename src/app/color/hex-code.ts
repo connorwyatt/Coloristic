@@ -21,8 +21,6 @@ export class HexCode {
   }
 
   private static parseHexCode(hexCode: string): string {
-    debugger;
-
     if (!hexCode) {
       throw new Error('Invalid hex code.');
     }
