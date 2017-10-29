@@ -1,6 +1,6 @@
-import { Color } from './color/color';
+import * as Color from 'color';
+import { NamedColor } from './color/named-color';
 import { Game } from './game';
-import { HexCode } from './color/hex-code';
 import { RandomAccessIteratorService } from './random-access-iterator.service';
 
 describe('Game', () => {
@@ -34,41 +34,41 @@ describe('Game', () => {
 
   it('returns the current color', () => {
     expect(game.currentColor).toEqual(
-      new Color('White', new HexCode('#FFFFFF'))
+      new NamedColor('White', new Color('#FFFFFF'))
     );
   });
 
   describe('when a guess is made', () => {
     describe('when the guess is correct', () => {
       it('gives a score of 1000', () => {
-        expect(game.guess(new HexCode('#FFFFFF'))).toBe(1000);
+        expect(game.guess(new Color('#FFFFFF'))).toBe(1000);
       });
 
       it('moves on to the next color', () => {
-        game.guess(new HexCode('#FFFFFF'));
+        game.guess(new Color('#FFFFFF'));
         expect(game.currentColor).toEqual(
-          new Color('Black', new HexCode('#000000'))
+          new NamedColor('Black', new Color('#000000'))
         );
-        game.guess(new HexCode('#FFFFFF'));
+        game.guess(new Color('#FFFFFF'));
         expect(game.currentColor).toEqual(
-          new Color('Red', new HexCode('#FF0000'))
+          new NamedColor('Red', new Color('#FF0000'))
         );
       });
     });
 
     describe('when the guess is incorrect', () => {
       it('gives a score of 0', () => {
-        expect(game.guess(new HexCode('#000000'))).toBe(0);
+        expect(game.guess(new Color('#000000'))).toBe(0);
       });
 
       it('moves on to the next color', () => {
-        game.guess(new HexCode('#000000'));
+        game.guess(new Color('#000000'));
         expect(game.currentColor).toEqual(
-          new Color('Black', new HexCode('#000000'))
+          new NamedColor('Black', new Color('#000000'))
         );
-        game.guess(new HexCode('#000000'));
+        game.guess(new Color('#000000'));
         expect(game.currentColor).toEqual(
-          new Color('Red', new HexCode('#FF0000'))
+          new NamedColor('Red', new Color('#FF0000'))
         );
       });
     });
