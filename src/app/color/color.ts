@@ -4,8 +4,8 @@ export class Color {
   public readonly name: string;
   public readonly hex: HexCode;
 
-  constructor(name: string, hex: string) {
+  constructor(name: string, hex: HexCode) {
     this.name = name;
-    this.hex = new HexCode(hex);
+    this.hex = hex;
   }
 }
