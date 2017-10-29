@@ -9,7 +9,7 @@ import { GameService } from '../../game.service';
 export class GameContainerComponent {
   private gameService: GameService;
 
-  constructor(gameService: GameService) {
+  public constructor(gameService: GameService) {
     this.gameService = gameService;
   }
 }
