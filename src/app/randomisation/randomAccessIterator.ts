@@ -1,6 +1,6 @@
 export function* RandomAccessIterator<Element>(
   elements: Array<Element>,
-  repeat: Boolean = false
+  repeat: boolean = false
 ) {
   do {
     let remainingElements = [...elements];

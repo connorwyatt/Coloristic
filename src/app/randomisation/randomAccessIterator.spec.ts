@@ -1,6 +1,6 @@
 import { RandomAccessIterator } from './randomAccessIterator';
 
-const arrayFromIterator = (iterator: Generator) => {
+const arrayFromIterator = <Element>(iterator: Iterator<Element>) => {
   let result = iterator.next();
   const array = [];
 
