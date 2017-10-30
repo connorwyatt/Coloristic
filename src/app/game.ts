@@ -25,8 +25,6 @@ export class Game {
   }
 
   public guess(color: Color): number {
-    debugger;
-
     const score = this.pointsScored(this.currentColor.color, color);
 
     this._currentColor = this.colors.next().value;
