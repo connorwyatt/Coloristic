@@ -25,6 +25,8 @@ export class Game {
   }
 
   public guess(color: Color): number {
+    debugger;
+
     const score = this.pointsScored(this.currentColor.color, color);
 
     this._currentColor = this.colors.next().value;
@@ -37,7 +39,14 @@ export class Game {
 
     const normalisedContrast = (21 - contrast) / 20;
 
-    const score = Math.round(normalisedContrast * 1000);
+    const threshold = 0.96968;
+
+    const thresholdedContrast = Math.max(
+      (normalisedContrast - threshold) * (1 / (1 - threshold)),
+      0
+    );
+
+    const score = Math.round(thresholdedContrast * 1000);
 
     return score;
   }

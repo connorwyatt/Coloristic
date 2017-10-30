@@ -39,37 +39,44 @@ describe('Game', () => {
   });
 
   describe('when a guess is made', () => {
-    describe('when the guess is correct', () => {
-      it('gives a score of 1000', () => {
-        expect(game.guess(new Color('#FFFFFF'))).toBe(1000);
-      });
+    it('moves on to the next color', () => {
+      game.guess(new Color('#FFFFFF'));
+      expect(game.currentColor).toEqual(
+        new NamedColor('Black', new Color('#000000'))
+      );
+      game.guess(new Color('#FFFFFF'));
+      expect(game.currentColor).toEqual(
+        new NamedColor('Red', new Color('#FF0000'))
+      );
+    });
 
-      it('moves on to the next color', () => {
-        game.guess(new Color('#FFFFFF'));
-        expect(game.currentColor).toEqual(
-          new NamedColor('Black', new Color('#000000'))
-        );
-        game.guess(new Color('#FFFFFF'));
-        expect(game.currentColor).toEqual(
-          new NamedColor('Red', new Color('#FF0000'))
-        );
+    describe('when the guess is exactly correct', () => {
+      it('returns a score of 1000', () => {
+        expect(game.guess(new Color('#FFFFFF'))).toBe(1000);
       });
     });
 
-    describe('when the guess is incorrect', () => {
-      it('gives a score of 0', () => {
+    describe('when the guess is exactly incorrect', () => {
+      it('returns the score of 0', () => {
         expect(game.guess(new Color('#000000'))).toBe(0);
       });
+    });
 
-      it('moves on to the next color', () => {
-        game.guess(new Color('#000000'));
-        expect(game.currentColor).toEqual(
-          new NamedColor('Black', new Color('#000000'))
-        );
-        game.guess(new Color('#000000'));
-        expect(game.currentColor).toEqual(
-          new NamedColor('Red', new Color('#FF0000'))
-        );
+    describe('when the guess is outside of the threshold', () => {
+      it('returns the score of 0', () => {
+        expect(game.guess(new Color('#CCCCCB'))).toBe(0);
+      });
+    });
+
+    describe('when the guess is inside of the threshold', () => {
+      it('returns the score of 1', () => {
+        expect(game.guess(new Color('#CCCCCC'))).toBe(1);
+      });
+    });
+
+    describe('when the guess is close to the actual color', () => {
+      it('should return a score of 999', () => {
+        expect(game.guess(new Color('#FFFFFE'))).toBe(999);
       });
     });
   });
