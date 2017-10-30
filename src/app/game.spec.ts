@@ -1,6 +1,6 @@
-import { Color } from './color/color';
+import * as Color from 'color';
+import { NamedColor } from './color/named-color';
 import { Game } from './game';
-import { HexCode } from './color/hex-code';
 import { RandomAccessIteratorService } from './random-access-iterator.service';
 
 describe('Game', () => {
@@ -34,42 +34,49 @@ describe('Game', () => {
 
   it('returns the current color', () => {
     expect(game.currentColor).toEqual(
-      new Color('White', new HexCode('#FFFFFF'))
+      new NamedColor('White', new Color('#FFFFFF'))
     );
   });
 
   describe('when a guess is made', () => {
-    describe('when the guess is correct', () => {
-      it('gives a score of 1000', () => {
-        expect(game.guess(new HexCode('#FFFFFF'))).toBe(1000);
-      });
+    it('moves on to the next color', () => {
+      game.guess(new Color('#FFFFFF'));
+      expect(game.currentColor).toEqual(
+        new NamedColor('Black', new Color('#000000'))
+      );
+      game.guess(new Color('#FFFFFF'));
+      expect(game.currentColor).toEqual(
+        new NamedColor('Red', new Color('#FF0000'))
+      );
+    });
 
-      it('moves on to the next color', () => {
-        game.guess(new HexCode('#FFFFFF'));
-        expect(game.currentColor).toEqual(
-          new Color('Black', new HexCode('#000000'))
-        );
-        game.guess(new HexCode('#FFFFFF'));
-        expect(game.currentColor).toEqual(
-          new Color('Red', new HexCode('#FF0000'))
-        );
+    describe('when the guess is exactly correct', () => {
+      it('returns a score of 1000', () => {
+        expect(game.guess(new Color('#FFFFFF'))).toBe(1000);
       });
     });
 
-    describe('when the guess is incorrect', () => {
-      it('gives a score of 0', () => {
-        expect(game.guess(new HexCode('#000000'))).toBe(0);
+    describe('when the guess is exactly incorrect', () => {
+      it('returns the score of 0', () => {
+        expect(game.guess(new Color('#000000'))).toBe(0);
       });
+    });
 
-      it('moves on to the next color', () => {
-        game.guess(new HexCode('#000000'));
-        expect(game.currentColor).toEqual(
-          new Color('Black', new HexCode('#000000'))
-        );
-        game.guess(new HexCode('#000000'));
-        expect(game.currentColor).toEqual(
-          new Color('Red', new HexCode('#FF0000'))
-        );
+    describe('when the guess is outside of the threshold', () => {
+      it('returns the score of 0', () => {
+        expect(game.guess(new Color('#CCCCCB'))).toBe(0);
+      });
+    });
+
+    describe('when the guess is inside of the threshold', () => {
+      it('returns the score of 1', () => {
+        expect(game.guess(new Color('#CCCCCC'))).toBe(1);
+      });
+    });
+
+    describe('when the guess is close to the actual color', () => {
+      it('should return a score of 999', () => {
+        expect(game.guess(new Color('#FFFFFE'))).toBe(999);
       });
     });
   });

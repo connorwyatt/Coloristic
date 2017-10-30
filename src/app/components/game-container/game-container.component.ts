@@ -7,9 +7,9 @@ import { GameService } from '../../game.service';
   styleUrls: ['./game-container.component.scss']
 })
 export class GameContainerComponent {
-  private game: GameService;
+  private gameService: GameService;
 
-  constructor(game: GameService) {
-    this.game = game;
+  public constructor(gameService: GameService) {
+    this.gameService = gameService;
   }
 }
