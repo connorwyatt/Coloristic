@@ -40,7 +40,7 @@ export class Game {
     const threshold = 0.96968;
 
     const thresholdedContrast = Math.max(
-      (normalisedContrast - threshold) * (1 / (1 - threshold)),
+      (normalisedContrast - threshold) / (1 - threshold),
       0
     );
 
