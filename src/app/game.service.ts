@@ -1,22 +1,22 @@
 import { Inject, Injectable } from '@angular/core';
-import { NTC_TOKEN } from './color/ntc.token';
 import { Game } from './game';
 import { RandomAccessIteratorService } from './random-access-iterator.service';
+import { COLORS_TOKEN } from './color/colors.token';
 
 @Injectable()
 export class GameService {
-  private nameThatColor: NameThatColor;
+  private colors: Array<{ 0: string; 1: string }>;
   private randomAccessIteratorService: RandomAccessIteratorService;
 
   public constructor(
-    @Inject(NTC_TOKEN) nameThatColor: NameThatColor,
+    @Inject(COLORS_TOKEN) colors: Array<{ 0: string; 1: string }>,
     randomAccessIteratorService: RandomAccessIteratorService
   ) {
-    this.nameThatColor = nameThatColor;
+    this.colors = colors;
     this.randomAccessIteratorService = randomAccessIteratorService;
   }
 
   public newGame(): Game {
-    return new Game(this.nameThatColor, this.randomAccessIteratorService);
+    return new Game(this.colors, this.randomAccessIteratorService);
   }
 }

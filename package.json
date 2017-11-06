@@ -4,11 +4,11 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --aot",
     "build": "ng build -prod",
     "test": "ng test --sourcemaps=false",
     "test:ci": "yarn run test -- --single-run --no-progress --browser=ChromeNoSandbox",
-    "lint": "ng lint",
+    "lint": "ng lint --type-check",
     "e2e": "ng e2e",
     "predeploy": "yarn run build",
     "deploy": "firebase deploy",

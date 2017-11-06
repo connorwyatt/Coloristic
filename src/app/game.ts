@@ -8,14 +8,14 @@ export class Game {
   private colors: Iterator<NamedColor>;
 
   public constructor(
-    nameThatColor: NameThatColor,
+    colors: Array<{ 0: string; 1: string }>,
     randomAccessIteratorService: RandomAccessIteratorService
   ) {
-    const colors = nameThatColor.names.map(
+    const namedColors = colors.map(
       item => new NamedColor(item[1], new Color(`#${item[0]}`))
     );
 
-    this.colors = randomAccessIteratorService.newIterator(colors, true);
+    this.colors = randomAccessIteratorService.newIterator(namedColors, true);
 
     this._currentColor = this.colors.next().value;
   }

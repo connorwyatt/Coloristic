@@ -5,23 +5,11 @@ import { RandomAccessIteratorService } from './random-access-iterator.service';
 
 describe('Game', () => {
   let game: Game;
-  let nameThatColorMock: NameThatColor;
+  let colors: Array<{ 0: string; 1: string }>;
   let randomAccessIteratorServiceMock: RandomAccessIteratorService;
 
   beforeEach(() => {
-    nameThatColorMock = {
-      names: [['FFFFFF', 'White'], ['000000', 'Black'], ['FF0000', 'Red']],
-      init() {},
-      name(color: string) {
-        return null;
-      },
-      hsl(color: string) {
-        return null;
-      },
-      rgb(color: string) {
-        return null;
-      }
-    };
+    colors = [['FFFFFF', 'White'], ['000000', 'Black'], ['FF0000', 'Red']];
 
     randomAccessIteratorServiceMock = {
       newIterator: elements => {
@@ -29,7 +17,7 @@ describe('Game', () => {
       }
     };
 
-    game = new Game(nameThatColorMock, randomAccessIteratorServiceMock);
+    game = new Game(colors, randomAccessIteratorServiceMock);
   });
 
   it('returns the current color', () => {
