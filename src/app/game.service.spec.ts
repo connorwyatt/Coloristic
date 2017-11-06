@@ -1,27 +1,15 @@
 import { inject, TestBed } from '@angular/core/testing';
-import { NTC_TOKEN } from './color/ntc.token';
+import { COLORS_TOKEN } from './color/colors.token';
 import { GameService } from './game.service';
 import { RandomAccessIteratorService } from './random-access-iterator.service';
 
 describe('GameService', () => {
   let service: GameService;
-  let nameThatColorMock: NameThatColor;
+  let colors: Array<{ 0: string; 1: string }>;
   let randomAccessIteratorServiceMock: RandomAccessIteratorService;
 
   beforeEach(() => {
-    nameThatColorMock = {
-      names: [['FFFFFF', 'White'], ['000000', 'Black'], ['FF0000', 'Red']],
-      init() {},
-      name(color: string) {
-        return null;
-      },
-      hsl(color: string) {
-        return null;
-      },
-      rgb(color: string) {
-        return null;
-      }
-    };
+    colors = [['FFFFFF', 'White'], ['000000', 'Black'], ['FF0000', 'Red']];
 
     randomAccessIteratorServiceMock = {
       newIterator: elements => {
@@ -34,8 +22,8 @@ describe('GameService', () => {
         GameService,
         RandomAccessIteratorService,
         {
-          provide: NTC_TOKEN,
-          useValue: nameThatColorMock
+          provide: COLORS_TOKEN,
+          useValue: colors
         }
       ]
     });
