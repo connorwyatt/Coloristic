@@ -13,7 +13,18 @@ describe('GameContainerComponent', () => {
         providers: [GameService]
       }).compileComponents();
 
-      TestBed.overrideProvider(GameService, { useValue: {} });
+      TestBed.overrideProvider(GameService, {
+        useValue: {
+          newGame() {
+            return {
+              currentColor: {
+                name: 'White'
+              },
+              score: 0
+            };
+          }
+        }
+      });
     })
   );
 

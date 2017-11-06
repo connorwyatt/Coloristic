@@ -1,3 +1,16 @@
-<p>
-  game-container works!
-</p>
+<div class="container">
+  <button type="button" (click)="newGame()">New game</button>
+
+  <p>Score: {{ currentGame.score }}</p>
+
+  <p>Guess the hex code for: {{ currentGame.currentColor.name }}</p>
+
+  <form (submit)="submit($event, hex.value)">
+    <div>
+      <label for="hex">Hex Code</label>
+      <input id="hex" type="text" #hex />
+    </div>
+
+    <button type="submit">Guess</button>
+  </form>
+</div>
