@@ -50,6 +50,14 @@ describe('Game', () => {
       );
     });
 
+    it('updates the score', () => {
+      expect(game.score).toBe(0);
+      game.guess(new Color('#FFFFFF'));
+      expect(game.score).toBe(1000);
+      game.guess(new Color('#000000'));
+      expect(game.score).toBe(2000);
+    });
+
     describe('when the guess is exactly correct', () => {
       it('returns a score of 1000', () => {
         expect(game.guess(new Color('#FFFFFF'))).toBe(1000);

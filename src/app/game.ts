@@ -3,6 +3,8 @@ import { NamedColor } from './color/named-color';
 import { RandomAccessIteratorService } from './random-access-iterator.service';
 
 export class Game {
+  private _currentColor: NamedColor;
+  private _score = 0;
   private colors: Iterator<NamedColor>;
 
   public constructor(
@@ -18,14 +20,18 @@ export class Game {
     this._currentColor = this.colors.next().value;
   }
 
-  private _currentColor: NamedColor;
-
   public get currentColor(): NamedColor {
     return this._currentColor;
   }
 
+  public get score(): number {
+    return this._score;
+  }
+
   public guess(color: Color): number {
     const score = this.pointsScored(this.currentColor.color, color);
+
+    this._score += score;
 
     this._currentColor = this.colors.next().value;
 
